@@ -2,12 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AgendaRequest;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 
+
 class AgendaController extends Controller
 {
+    public function __construct()
+    {
+       $this->hora = date('H:i');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -35,8 +41,8 @@ class AgendaController extends Controller
      */
     public function create(string $data)
     {
-        $hora = date('H:i');
-        return view('calendario.create', ['data'=>$data, 'hora'=>$hora]);
+        
+        return view('calendario.create', ['data'=>$data, 'hora'=>$this->hora]);
     }
 
     /**
@@ -45,16 +51,11 @@ class AgendaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AgendaRequest $request, Agenda $agenda)
     {
        
-        Agenda::create([
-            'title'=>$request->title,
-            'description'=>$request->description,
-            'start'=>$request->start,
-            'end'=>$request->end,
-            'color'=>$request->color
-        ]);
+        $agenda->create($request->safe()->all());
+           
         return redirect('agenda')
         ->withSuccess('REUNIÃO AGENDADA COM SUCESSO!');
        

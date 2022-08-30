@@ -39,10 +39,10 @@ class SectorController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SectorRequest $request, Sector $sector)
     {
-        $dados = $request->except('_token');
-        Sector::create($dados);
+        
+        $sector->create($request->safe()->all());
         return redirect()->route('sectors.index')
         ->withSuccess('SETOR CADASTRADO COM SUCESSO!');
     }

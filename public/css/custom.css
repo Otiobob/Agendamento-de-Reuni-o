@@ -1,0 +1,5 @@
+.custom-radio input:checked + label::before {
+    background-color: red;
+    border: none;
+    padding: 1px;
+}

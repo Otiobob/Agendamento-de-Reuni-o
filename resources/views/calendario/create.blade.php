@@ -39,14 +39,28 @@
                 <label for="end">Término da Reunião (Data e Horário)</label>
                 <input class="form-control" type="datetime-local" id="end" name="end" min="{{date('Y-m-d\TH:i')}}"> 
               </div>
-              <div class="form-group">
-                <label for="description">Cor</label>
-                <select name="color" class="form-control">
-                  <option value="red" style="color:red">Vermelho</option>
-                  <option value="green"  style="color:rgb(30, 255, 0)">Verde</option>
-                  <option value="pink"  style="color:rgb(255, 0, 204)">Rosa</option>
-                </select>
-              </div>
+              <div class="col-sm-6">
+                <!-- radio -->
+                <label> Prioridade </label>
+                <div class="form-group clearfix">
+                 
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" name="color"    >
+                    <label for="red"  value="red" style="color:red">GRANDE URGÊNCIA</label>
+                  </div>
+                  <br>
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" name="color" >
+                    <label for="blue" value="blue" style="color:rgb(0, 123, 255)" >MEDIA URGÊNCIA</label>
+                  </div>
+                  <br>
+                  <div class="icheck-primary d-inline">
+                    <input type="radio" name="color" >
+                    <label for="green" value="green" style="color:rgb(24, 149, 5)">BAIXA URGÊNCIA</label>
+                  </div>
+                  
+                </div>
+  
           <div>
             <button type="submit" class="btn btn-primary">Salvar</button>
 @stop

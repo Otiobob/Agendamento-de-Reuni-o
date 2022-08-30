@@ -47,12 +47,13 @@ class AgendaController extends Controller
      */
     public function store(Request $request)
     {
-          
+       
         Agenda::create([
             'title'=>$request->title,
             'description'=>$request->description,
             'start'=>$request->start,
-            'end'=>$request->end
+            'end'=>$request->end,
+            'color'=>$request->color
         ]);
         return redirect('agenda')
         ->withSuccess('REUNIÃO AGENDADA COM SUCESSO!');

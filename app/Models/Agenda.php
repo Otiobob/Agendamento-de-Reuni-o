@@ -17,7 +17,8 @@ class Agenda extends Model
         'title',
         'description',
         'start',
-        'end'
+        'end',
+        'color'
     ];
 
 }

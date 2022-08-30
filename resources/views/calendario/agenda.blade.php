@@ -34,7 +34,7 @@
           selectable: true, 
           locale:"pt-BR",
           
-          dayMaxEventRows: 2,
+          dayMaxEventRows: 3,
           select: function(event){ 
             window.location.replace('http://127.0.0.1:8000/agenda/'+event.startStr+''+'/create') 
           },
@@ -45,6 +45,7 @@
                     title: '{{ $agenda->title }}',
                     start: '{{ $agenda->start }}',
                     end: '{{ $agenda->end }}',
+                    color: '{{$agenda->color}}'
                     
                 },
             @endforeach            

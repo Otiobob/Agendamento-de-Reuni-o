@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AgendaRequest;
+use App\Mail\AgendaSendMail;
 use App\Models\Agenda;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Mail;
 
 
 class AgendaController extends Controller
@@ -29,7 +31,7 @@ class AgendaController extends Controller
 
     public function getAgenda()
     {
-        // dd(Agenda::first());
+    
         $data = Agenda::first();
         echo response()->json(['data' => $data]);
     }
@@ -53,8 +55,13 @@ class AgendaController extends Controller
      */
     public function store(AgendaRequest $request, Agenda $agenda)
     {
+       $email = auth()->user()->email;
+        $result = $agenda->create($request->safe()->all());
        
-        $agenda->create($request->safe()->all());
+        
+            Mail::to($email)
+            ->send( new AgendaSendMail($result));
+        
            
         return redirect('agenda')
         ->withSuccess('REUNIÃO AGENDADA COM SUCESSO!');

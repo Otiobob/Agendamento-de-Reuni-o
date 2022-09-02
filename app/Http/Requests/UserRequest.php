@@ -41,14 +41,6 @@ class UserRequest extends FormRequest
 
     } 
 
-    // protected function prepareForValidation()
-    // {
-        
-    //         return $this->merge([
-    //             'password' => Hash::make($this->password),
-    //             'password_confirmation' => Hash::make($this->password_confirmation)
-    //         ]);
-        
-    // }
+    
     
 }

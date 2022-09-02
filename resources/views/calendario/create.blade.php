@@ -63,6 +63,7 @@
   
           <div>
             <button type="submit" class="btn btn-primary">Salvar</button>
+           
 @stop
 
 @section('css')

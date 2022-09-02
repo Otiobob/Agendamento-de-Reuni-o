@@ -2,6 +2,8 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AgendaRule;
+use App\Rules\ValidacaoPeriodo;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AgendaRequest extends FormRequest
@@ -26,8 +28,8 @@ class AgendaRequest extends FormRequest
         return [
             'title' => ['required', 'string', 'max:50', 'min:2'],
             'description' => ['required', 'string', 'min:3'],
-            'start' => ['required', 'date:Y-m-d\TH:i'],
-            'end' => ['required', 'date:Y-m-d\TH:i'],
+            'start' => ['required', 'date:Y-m-d\TH:i', new AgendaRule($this->end)], 
+            'end' => ['required', 'date:Y-m-d\TH:i', new ValidacaoPeriodo($this->start)],
             'color' => ['required', 'string']
         ];
     }
@@ -46,7 +48,7 @@ class AgendaRequest extends FormRequest
     public function messages()
     {
         return [
-            'color.required' => 'Selecione uma prioridade'
+            'color.required' => 'Selecione uma prioridade',
             
         ];
     }

@@ -28,8 +28,9 @@ class AgendaRule implements Rule
     {   
         $start = str_replace('T', ' ', $value);
         $end = str_replace('T', ' ', $this->end);
-        $agendas = Agenda::where('start', '<=', $start)->Where('end', '=>', $end)->count();
+        $agendas = Agenda::whereBetween('start',[$start, $end])->count();
        
+        
         return $agendas == 0 ? true : false;
     }
 

@@ -62,7 +62,6 @@ class AgendaController extends Controller
             Mail::to($email)
             ->send( new AgendaSendMail($result));
         
-           
         return redirect('agenda')
         ->withSuccess('REUNIÃO AGENDADA COM SUCESSO!');
        
